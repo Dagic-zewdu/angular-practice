@@ -1,9 +1,13 @@
-<form class="flex items-center justify-center p-2 border-b-2 w-full">
+<form
+  [formGroup]="applyForm"
+  class="flex items-center justify-center p-2 border-b-2 w-full"
+  (submit)="addTask()"
+>
   <input
     type="text"
     class="w-full p-2 outline-0 border-1"
     placeholder="Add task"
-    [(ngModel)]="name"
+    formControlName="name"
   />
   <img
     src="../../../assets/svg/timer.svg"

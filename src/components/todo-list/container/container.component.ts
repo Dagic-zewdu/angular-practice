@@ -9,4 +9,6 @@ import { AddTaskComponent } from '../add-task/add-task.component';
   templateUrl: './container.component.html',
   styleUrl: './container.component.scss',
 })
-export default class ContainerComponent {}
+export default class ContainerComponent {
+  today = new Date().toUTCString().slice(0, 16);
+}

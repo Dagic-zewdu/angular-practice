@@ -1,14 +1,19 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-add-task',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './add-task.component.html',
   styleUrl: './add-task.component.scss',
 })
 export class AddTaskComponent {
-  name: string = '';
-  hour: number = new Date().getHours();
-  minute: number = new Date().getMinutes();
+  applyForm = new FormGroup({
+    name: new FormControl(''),
+  });
+  addTask() {
+    console.log(this.applyForm.value.name);
+  }
 }
