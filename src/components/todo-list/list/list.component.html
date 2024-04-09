@@ -1,0 +1,52 @@
+<ul class="list-none">
+  <li
+    *ngFor="let todo of todos$"
+    class="border py-4 shadow-md flex flex-wrap justify-around items-center w-full"
+  >
+    <input type="checkbox" [checked]="todo.completed" name="" id="" />
+
+    <p *ngIf="todo.completed && !checkToDoForEdit(todo.id)" class="w-[60%]">
+      {{ todo.name }}
+    </p>
+    <p
+      *ngIf="!todo.completed && !checkToDoForEdit(todo.id)"
+      class="line-through w-[60%]"
+    >
+      {{ todo.name }}
+    </p>
+
+    <input
+      [id]="'edit-task-name-input-' + todo.id"
+      type="text"
+      :value="editText"
+      class="w-[60%] outline-0 border-none"
+      [hidden]="!checkToDoForEdit(todo.id)"
+      (focus)="setEditText(todo.name)"
+      [(ngModel)]="editText"
+      (blur)="editToDo(todo.id, false)"
+    />
+    <img
+      src="../../../assets/svg/edit.svg"
+      class="cursor-pointer h-[20px] ml-2"
+      alt=""
+      (click)="editToDo(todo.id, true)"
+    />
+    <p *ngIf="todo.starting_time">12:30 PM</p>
+    <p *ngIf="todo.notify_before">50 min earlier</p>
+
+    <img
+      *ngIf="!todo.starting_time"
+      src="../../../assets/svg/timer.svg"
+      class="cursor-pointer h-[20px] ml-2"
+      alt=""
+      srcset=""
+    />
+    <img
+      *ngIf="!todo.notify_before"
+      src="../../../assets/svg/bell.svg"
+      class="cursor-pointer h-[20px] ml-2"
+      alt=""
+      srcset=""
+    />
+  </li>
+</ul>
